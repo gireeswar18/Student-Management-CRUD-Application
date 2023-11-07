@@ -1,0 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+body {
+    font-family: poppins;
+    background-color: aliceblue;
+}
+
+.details {
+    margin-left: 50px;
+    margin-top: 50px;
+    margin-right: 50px;
+}
+
+#addStudent {
+    margin-left: 25px;
+}

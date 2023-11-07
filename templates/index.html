@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="{{url_for('static', filename='demo.css')}}">
+    <title>CRUD Application</title>
+  </head>
+  <body>
+    <div class="container">
+      <h3 class="text-center my-3">Student Management Application</h3>
+
+      <div class="details">
+      <h5 class="text-center">
+        Student List
+        <a type="submit" class="btn btn-success" id = "addStudent" href="/insert">Add Student</a>
+      </h5>
+
+      <table class="table table-striped">
+        <tr>
+            <th>Regno.</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Mobile No.</th>
+            <th>Action</th>
+        </tr>
+        {% for i in row: %}
+        <tr>
+            <td>{{i["regno"]}}</td>
+            <td>{{i["name"]}}</td>
+            <td>{{i["email"]}}</td>
+            <td>{{i["mobile"]}}</td>
+            <th><a href="/update" class="btn btn-warning btn-xs">Edit</a>&nbsp;&nbsp;&nbsp;
+              <a href="/delete" class="btn btn-danger btn-xs" >Delete</a></th>
+        </tr>
+        {% endfor %}
+      </table>
+
+      </div>
+      </div>
+  </body>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</html>
+
