@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, abort
 import sqlite3
 
 app = Flask(__name__)
@@ -33,10 +33,23 @@ def deleterecord():
         db = sqlite3.connect('project.db')
         cursor = db.cursor()
         cursor.execute("delete from student where regno = ? and email = ?", (regno, email))
-        db.commit()
-        return render_template('message.html', message = "Deleted Successfully!")
+        rows_affected = cursor.rowcount
+
+        if rows_affected == 0:
+            db.rollback()
+            message = "Invalid Credentials!"
+        else:
+            db.commit()
+            message = "Deleted Successfully!"
+
     except Exception as e:
-        return render_template('message.html', message = e)
+        print(f"Error: {e}")
+        message = "Delete Failed!"
+    finally:
+        cursor.close()
+        db.close()
+        return render_template('message.html', message = message)
+
         
 @app.route("/save", methods=["POST",'GET'])
 def save():
